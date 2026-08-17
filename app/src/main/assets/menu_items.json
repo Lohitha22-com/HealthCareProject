@@ -1,0 +1,229 @@
+{
+"menu_items": [
+        {
+            "menu_id": 1,
+            "id": "dashboard",
+            "title": "Dashboard",
+            "type": "item",
+            "url": "dashboard/analytics",
+            "parent_id": null,
+            "sort_order": 1
+        },
+        {
+            "menu_id": 2,
+            "id": "view_reports",
+            "title": "Your Reports",
+            "type": "collapsible",
+            "url": null,
+            "parent_id": null,
+            "sort_order": 4
+        },
+        {
+            "menu_id": 4,
+            "id": "shared_documents",
+            "title": "Shared Reports",
+            "type": "item",
+            "url": "shared/documents",
+            "parent_id": null,
+            "sort_order": 6
+        },
+        {
+            "menu_id": 5,
+            "id": "blogs",
+            "title": "Blogs",
+            "type": "item",
+            "url": "announcements/manage",
+            "parent_id": null,
+            "sort_order": 7
+        },
+        {
+            "menu_id": 8,
+            "id": "second_opinion",
+            "title": "Second Opinion",
+            "type": "item",
+            "url": "second-opinion",
+            "parent_id": null,
+            "sort_order": 9
+        },
+        {
+            "menu_id": 1010,
+            "id": "Spends",
+            "title": "Spends",
+            "type": "collapsible",
+            "url": null,
+            "parent_id": null,
+            "sort_order": 13
+        },
+        {
+            "menu_id": 1012,
+            "id": "Risk Calculator",
+            "title": "Risk Calculator",
+            "type": "collapsible",
+            "url": null,
+            "parent_id": null,
+            "sort_order": 14
+        },
+        {
+            "menu_id": 1013,
+            "id": "Vaccinations",
+            "title": "Vaccinations",
+            "type": "collapsible",
+            "url": null,
+            "parent_id": null,
+            "sort_order": 15
+        },
+        {
+            "menu_id": 1020,
+            "id": "Notes-tab",
+            "title": "My Notes",
+            "type": "item",
+            "url": "/notes-menu",
+            "parent_id": null,
+            "sort_order": 16
+        },
+        {
+            "menu_id": 0,
+            "id": "all",
+            "title": "All",
+            "type": "item",
+            "url": "view-reports/0",
+            "parent_id": 2,
+            "sort_order": 1
+        },
+        {
+            "menu_id": 1,
+            "id": "general",
+            "title": "General",
+            "type": "item",
+            "url": "view-reports/1",
+            "parent_id": 2,
+            "sort_order": 2
+        },
+        {
+            "menu_id": 2,
+            "id": "imaging",
+            "title": "Imaging",
+            "type": "item",
+            "url": "view-reports/2",
+            "parent_id": 2,
+            "sort_order": 3
+        },
+        {
+            "menu_id": 3,
+            "id": "blood_work",
+            "title": "Blood work",
+            "type": "item",
+            "url": "view-reports/3",
+            "parent_id": 2,
+            "sort_order": 4
+        },
+        {
+            "menu_id": 4,
+            "id": "cardiology",
+            "title": "Cardiology",
+            "type": "item",
+            "url": "view-reports/4",
+            "parent_id": 2,
+            "sort_order": 5
+        },
+        {
+            "menu_id": 5,
+            "id": "gastroenterology",
+            "title": "Gastroenterology",
+            "type": "item",
+            "url": "view-reports/5",
+            "parent_id": 2,
+            "sort_order": 6
+        },
+        {
+            "menu_id": 7,
+            "id": "neurology",
+            "title": "Neurology",
+            "type": "item",
+            "url": "view-reports/7",
+            "parent_id": 2,
+            "sort_order": 8
+        },
+        {
+            "menu_id": 9,
+            "id": "prescriptions",
+            "title": "Prescriptions",
+            "type": "item",
+            "url": "view-reports/9",
+            "parent_id": 2,
+            "sort_order": 10
+        },
+        {
+            "menu_id": 10097,
+            "id": "cancer",
+            "title": "Cancer",
+            "type": "item",
+            "url": "view-reports/10097",
+            "parent_id": 2,
+            "sort_order": 11
+        },
+        {
+            "menu_id": 1011,
+            "id": "Receipts",
+            "title": "Receipts",
+            "type": "item",
+            "url": "spends/receipts",
+            "parent_id": 1010,
+            "sort_order": 1
+        },
+        {
+            "menu_id": 1018,
+            "id": "BMI",
+            "title": "BMI",
+            "type": "item",
+            "url": "calculator/bmi-calculator",
+            "parent_id": 1012,
+            "sort_order": 1
+        },
+        {
+            "menu_id": 1019,
+            "id": "Cardiovascular_calculator ",
+            "title": "ASCVD Risk-estimator",
+            "type": "item",
+            "url": "calculator/cardiovascular-calculator",
+            "parent_id": 1012,
+            "sort_order": 2
+        },
+        {
+            "menu_id": 1014,
+            "id": "Adult_immunization_schedule_by_medical_condition",
+            "title": "Adult immunization schedule by medical condition",
+            "type": "item",
+            "url": "vaccination/adultimmunization",
+            "parent_id": 1013,
+            "sort_order": 1
+        },
+        {
+            "menu_id": 1015,
+            "id": "Recommended_immunization_schedule_for_children",
+            "title": "Recommended immunization schedule for children",
+            "type": "item",
+            "url": "/vaccination/recomanded-immunization-child",
+            "parent_id": 1013,
+            "sort_order": 2
+        },
+        {
+            "menu_id": 1016,
+            "id": "Adult_immunization_schedule_by_age",
+            "title": "Adult immunization schedule by age",
+            "type": "item",
+            "url": "/vaccination/adult-immunization-schedule-by-age",
+            "parent_id": 1013,
+            "sort_order": 3
+        },
+        {
+            "menu_id": 1017,
+            "id": "true-contraindications",
+            "title": "True contraindications to vaccine administration",
+            "type": "item",
+            "url": "/vaccination/true-contraindications",
+            "parent_id": 1013,
+            "sort_order": 4
+        }
+    ]
+}

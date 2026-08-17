@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group1">
+    <item
+        android:id="@+id/dashboard"
+        android:title="Dasboard" />
+    </group>
+    <group android:id="@+id/group2">
+    <item
+        android:id="@+id/textLanguage"
+        android:title="Language"/>
+    </group>
+    <group android:id="@+id/group3">
+    <item
+        android:id="@+id/textPatient"
+        android:title="Patients"/>
+    </group>
+    <group android:id="@+id/group4">
+    <item
+        android:id="@+id/textDoctors"
+        android:title="Doctors"/>
+    </group>
+    <group android:id="@+id/group5">
+    <item
+        android:id="@+id/textAppointments"
+        android:title="Appointments"/>
+    </group>
+    <group android:id="@+id/group6">
+    <item
+        android:id="@+id/textLabreports"
+        android:title="Labreports"/>
+    </group>
+    <group android:id="@+id/group7">
+    <item
+        android:id="@+id/textFiles"
+        android:title="Files"/>
+    </group>
+    <group android:id="@+id/group8">
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"/>
+    </group>
+
+</menu>
