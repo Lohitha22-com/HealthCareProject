@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class ListViews extends BaseActivity {
+public class ListViews extends AppCompatActivity {
 
     List<ListViewDashboard> listViewDashboardList = new ArrayList<>();
     List<MenuModelClass> flatMenuList = new ArrayList<>();
