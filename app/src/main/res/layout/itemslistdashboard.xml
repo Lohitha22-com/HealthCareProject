@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/itemRoot"
-    android:orientation="horizontal"
-    android:layout_margin="15dp"
-    android:layout_height="wrap_content"
-    card_view:cardUseCompatPadding="true"
+    card_view:cardElevation="9dp"
     card_view:cardCornerRadius="9dp"
-    card_view:cardElevation="5dp">
+    android:layout_margin="5dp"
+    android:layout_marginTop="15dp"
+    android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -115,7 +114,7 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_visit_history"
                     android:contentDescription="Timer"
-                    card_view:tint="@color/olive"
+                    card_view:tint="@color/c_red"
                     tools:ignore="HardcodedText"/>
 
                 <ImageButton
@@ -127,11 +126,10 @@
                     android:src="@drawable/ic_clean_circle_cancel"
                     android:background="?android:attr/selectableItemBackground"
                     android:scaleType="fitCenter"
-                    card_view:tint="@color/olive" />
+                    card_view:tint="@color/c_red" />
 
             </LinearLayout>
 
         </LinearLayout>
-
 
     </androidx.cardview.widget.CardView>

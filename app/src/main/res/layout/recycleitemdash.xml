@@ -63,7 +63,7 @@
             android:contentDescription="Delete"
             android:elevation="20dp"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
-            card_view:tint="@color/olive"
+            card_view:tint="@color/c_red"
             android:background="@android:color/transparent" />
         <!-- android:rotation="45"-->
         <!-- android:alpha="0.7"-->

@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             app:endIconMode="password_toggle"
             app:boxBackgroundMode="filled"
-            app:endIconTint="@color/olive">
+            app:endIconTint="@color/c_red">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             app:boxBackgroundMode="filled"
             app:endIconMode="password_toggle"
-            app:endIconTint="@color/olive" >
+            app:endIconTint="@color/c_red" >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etConfirmPass"

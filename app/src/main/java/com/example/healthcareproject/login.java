@@ -1,13 +1,24 @@
 package com.example.healthcareproject;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +33,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.healthcareproject.api.ApiResponse;
 import com.example.healthcareproject.api.ApiService;
 import com.example.healthcareproject.api.RetrofitClient;
+import com.example.healthcareproject.databinding.DialogErrorBinding;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -31,17 +43,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class login extends AppCompatActivity {
+public class login extends BaseActivity1 {
 
-    EditText etUsername;
-
-    TextInputEditText etPassword;
+    EditText etUsername, etPassword;
+    TextView forgotPassword, selfpayVisit;
     Button btnLogin;
-    TextView textLink;
+    ImageButton btnInfo;
 
     private ProgressDialog progressDialog;
 
@@ -54,18 +66,20 @@ public class login extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        textLink = findViewById(R.id.textLink);
+        btnInfo = findViewById(R.id.btnInfo);
+        forgotPassword = findViewById(R.id.forgotPassword);
+        selfpayVisit = findViewById(R.id.selfpayVisit);
 
         btnLogin.setOnClickListener(view -> {
-            String username = etUsername.getText().toString().toLowerCase().trim();
+            String username = etUsername.getText().toString().trim();
             String password = Objects.requireNonNull(etPassword.getText()).toString().trim();
 
             if(username.isEmpty()){
-                Toast.makeText(this, "Please enter username", Toast.LENGTH_SHORT).show();
+                showErrorDialog("Please enter Email");
             }
 
             else if(password.isEmpty()){
-                Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
+                showErrorDialog("Please enter Password");
             }
             else {
                 String url = "http://161.129.91.101:90/Telemed/ws_webrtc/Telemed.asmx/telemedLogin";
@@ -82,6 +96,7 @@ public class login extends AppCompatActivity {
 
                 progressDialog = new ProgressDialog(this);
                 progressDialog.setMessage("Loading.. Please wait!");
+                progressDialog.setCancelable(false);
                 progressDialog.show();
 
                 JsonObjectRequest jsonRequest = new JsonObjectRequest(
@@ -93,8 +108,10 @@ public class login extends AppCompatActivity {
                             progressDialog.dismiss();
 
                             JSONObject data = response.optJSONObject("d");
+                            Log.d("Login","Full data object: " + (data != null ? data.toString() : "null"));
+
                             boolean success = data != null && data.optBoolean("status", false);
-                            String message = data != null ? data.optString("message", "Registration failed"): "Registration failed";
+                            String message = data != null ? data.optString("message", "Login failed"): "Login failed";
                             if (success) {
                                 String key = data.optString("key", "");
                                 String companyId = data.optString("Company_Id", "");
@@ -151,14 +168,99 @@ public class login extends AppCompatActivity {
 
         });
 
+        btnInfo.setOnClickListener(v -> {
+            android.view.View view = android.view.LayoutInflater.from(login.this)
+                    .inflate(R.layout.view_tooltip, null);
 
-//        textLink.setPaintFlags(textLink.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-//        textLink.setTextColor(Color.GREEN);
-        textLink.setOnClickListener(v -> {
-//            textLink.setTextColor(Color.BLUE);
-            Intent intent = new Intent(login.this, javaApp.class);
+            final android.widget.PopupWindow popupWindow = new  android.widget.PopupWindow(
+                    view, ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    true );
+
+            popupWindow.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+            int offSetX = -(int)(24*getResources().getDisplayMetrics().density);
+            int offSetY = 4;
+            popupWindow.showAsDropDown(v, offSetX, offSetY);
+        });
+
+        selfpayVisit.setOnClickListener(v -> {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.show();
+            android.content.Intent intent = new android.content.Intent(login.this, SelfPayActivity.class);
             startActivity(intent);
-            finish();
+            progressDialog.dismiss();
+        });
+
+    }
+
+    private void showErrorDialog(String message) {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        DialogErrorBinding binding = DialogErrorBinding.inflate(getLayoutInflater());
+
+        dialog.setContentView(binding.getRoot());
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        dialog.setCancelable(false);
+
+        dialog.getWindow().setLayout((int) (getResources().getDisplayMetrics().widthPixels * 0.85), ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        binding.tvErrorMessage.setText(message);
+
+        binding.imgErrorX.setTranslationY(-250f);
+        binding.imgErrorX.setAlpha(0f);
+        binding.imgErrorX.setScaleX(1.8f);
+        binding.imgErrorX.setScaleY(1.8f);
+
+        binding.cardErrorMessage.setTranslationY(250f);
+        binding.cardErrorMessage.setAlpha(0f);
+        binding.cardErrorMessage.setScaleX(1.3f);
+        binding.cardErrorMessage.setScaleY(1.3f);
+
+        dialog.show();
+
+        binding.imgErrorX.post(() -> binding.imgErrorX.animate()
+                .translationY(0f)
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f)
+                .setDuration(500)
+                .setInterpolator(new AccelerateInterpolator())
+                .start());
+
+        binding.cardErrorMessage.animate()
+                .translationY(0f)
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f)
+                .setDuration(450)
+                .setInterpolator(new AccelerateInterpolator())
+                .setStartDelay(80)
+                .start();
+
+        binding.btnErrorOk.setOnClickListener(v -> {
+            binding.imgErrorX.post(() -> binding.imgErrorX.animate()
+                    .translationY(-250f)
+                    .alpha(0f)
+                    .scaleX(1.8f)
+                    .scaleY(1.8f)
+                    .setDuration(300)
+                    .setInterpolator(new AccelerateInterpolator())
+                    .start());
+
+            binding.cardErrorMessage.post(() -> binding.cardErrorMessage.animate()
+                    .translationY(250f)
+                    .alpha(0f)
+                    .scaleX(1.3f)
+                    .scaleY(1.3f)
+                    .setDuration(300)
+                    .setInterpolator(new AccelerateInterpolator())
+                    .withEndAction(dialog::dismiss)
+                    .start());
         });
     }
 }

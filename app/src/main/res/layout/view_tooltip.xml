@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <ImageView
+        android:id="@+id/ivTooltipArrow"
+        android:layout_width="16dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="19dp"
+        android:src="@drawable/ic_tooltip_arrow"
+        android:layout_gravity="end"
+        android:adjustViewBounds="true"
+        android:layout_marginEnd="14dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tooltip"
+        android:layout_marginTop="-1dp"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tooltipMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Our TeleMedicine app offers a self-pay option where patients can independently book and pay for virtual visits."
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:lineSpacingMultiplier="1.2" />
+
+    </LinearLayout>
+
+</LinearLayout>

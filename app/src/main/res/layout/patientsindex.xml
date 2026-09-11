@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="First Name"
-        android:textColor="@color/olive"
+        android:textColor="@color/c_red"
         android:textSize="22sp"
         android:layout_gravity="center"
         android:padding="20dp" />

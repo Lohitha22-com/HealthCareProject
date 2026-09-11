@@ -20,7 +20,7 @@
             android:paddingVertical="@dimen/cardview_compat_inset_shadow"
             android:id="@+id/toolBar"
             app:titleTextColor="@color/white"
-            android:background="@color/olive">
+            android:background="@color/c_red">
 
             <TextView
                 android:id="@+id/toolBarTitle"
@@ -127,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
-            android:background="@color/olive"
+            android:background="@color/c_red"
             android:orientation="vertical" >
 
             <TextView
@@ -149,7 +149,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/white"
-            android:divider="@color/olive"
+            android:divider="@color/c_red"
             android:dividerHeight="1dp"
             android:groupIndicator="@null"/>
 

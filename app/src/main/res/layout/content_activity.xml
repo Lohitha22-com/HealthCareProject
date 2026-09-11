@@ -9,7 +9,7 @@
         android:id="@+id/contentToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/olive"
+        android:background="@color/c_red"
         app:titleTextColor="@color/white"/>
 
     <TextView
@@ -19,7 +19,7 @@
         android:padding="24dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/grey"/>
 
     <TextView
         android:id="@+id/contentUrl"
@@ -28,6 +28,6 @@
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         android:textSize="14sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/grey"/>
 
 </LinearLayout>

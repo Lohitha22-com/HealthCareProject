@@ -9,7 +9,7 @@
         android:id="@+id/toolBar1"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/olive"
+        android:background="@color/c_red"
         app:titleTextColor="@color/white"
         app:title="Dashboard" />
 

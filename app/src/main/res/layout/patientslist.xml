@@ -15,7 +15,7 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/olive"
+            android:background="@color/c_red"
             android:paddingVertical="@dimen/cardview_compat_inset_shadow">
 
             <TextView
@@ -43,11 +43,24 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/patientRecycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/visitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_red_pill"
+            android:backgroundTint="@null"
+            android:text="Start New Visit"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:elevation="8dp" />
 
     </LinearLayout>
 

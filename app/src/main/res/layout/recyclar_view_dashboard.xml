@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#FFFFFF">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingVertical="@dimen/cardview_compat_inset_shadow"
+            android:id="@+id/toolBar"
+            app:titleTextColor="@color/white"
+            android:background="@color/c_red"
+            android:theme="@style/MyToolbarTheme">
+
+            <TextView
+                android:id="@+id/toolBarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Dashboard"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <ImageButton
+                android:id="@+id/patientButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/white"
+                android:src="@drawable/ic_person_add"
+                android:scaleType="fitCenter" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Begin an Incomplete or Future Visit"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/border"
+            android:backgroundTint="#F0F0F0"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_menu_search"
+                app:tint="#888888" />
+
+            <EditText
+                android:id="@+id/etSearchPatient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="Search by Patient Name"
+                android:textColorHint="#888888"
+                android:textColor="#000000"
+                android:paddingHorizontal="12dp"
+                android:textSize="15sp"
+                android:autofillHints="name"
+                android:inputType="textPersonName"
+                android:imeOptions="actionSearch"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/footerLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="1dp"
+                android:paddingBottom="6dp"
+                android:elevation="8dp"
+                android:layout_margin="5dp"
+                android:layout_alignParentBottom="true">
+
+                <ImageButton
+                    android:id="@+id/firebaseNotificationButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="5dp"
+                    android:src="@android:drawable/stat_notify_chat"
+                    android:backgroundTint="@color/c_red"
+                    android:elevation="25dp" />
+
+                <ImageView
+                    android:id="@+id/imageMap"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/outline_map_24"
+                    android:elevation="25dp"
+                    app:tint="@color/c_red"/>
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_above="@id/footerLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fillViewport="true">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclarId"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:divider="@null" />
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:background="@color/c_red"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text= "Menu Items"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <ExpandableListView
+            android:id="@+id/menuExpand"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:divider="@color/c_red"
+            android:dividerHeight="1dp"
+            android:groupIndicator="@null"/>
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

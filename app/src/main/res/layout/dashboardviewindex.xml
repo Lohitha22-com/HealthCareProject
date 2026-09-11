@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:background="@color/olive">
+    android:background="@color/c_red">
 
 <TextView
     android:id="@+id/list_item"
@@ -13,8 +13,8 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:layout_margin="5dp"
-    android:background="@color/softmin"
-    android:textColor="@color/olive"
+    android:background="@color/white"
+    android:textColor="@color/c_red"
     android:layout_gravity="center"
     android:padding="20dp"
     android:text="#000000"

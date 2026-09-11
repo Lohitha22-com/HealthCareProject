@@ -1,27 +1,30 @@
 package com.example.healthcareproject;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FormAdapter extends RecyclerView.Adapter<FormAdapter.FormViewHolder> {
 
     private List<FormItem> formItemsList;
-
+    public FormAdapter(ArrayList<FormItem> formItemsList) {
+    }
 
     @Override
     public int getItemViewType(int position) {
         return formItemsList.get(position).getLayoutResId();
-    }
-
-    public FormAdapter(List<FormItem> formItemsList){
-        this.formItemsList = formItemsList;
     }
 
     public void setItems(List<FormItem> items){
@@ -41,7 +44,10 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.FormViewHolder
     @Override
     public void onBindViewHolder(@NonNull FormAdapter.FormViewHolder holder, int position) {
         FormItem item = formItemsList.get(position);
-        item.getBinder().bind(holder.itemView, item);
+
+        if(item.getBinder() != null) {
+            item.getBinder().bind(holder.itemView, item);
+        }
         applyingGroupPosition(holder.itemView, item);
     }
 
@@ -57,9 +63,9 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.FormViewHolder
 
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
         int side = dpToPx(itemView.getContext(), 8);
-        int overlap = -1;
+        int overlap = 0;
         int top = (item.getGroupPosition() == FormItem.GroupPosition.TOP || item.getGroupPosition() == FormItem.GroupPosition.SINGLE) ? dpToPx(itemView.getContext(), 12) : overlap;
-        int bottom = (item.getGroupPosition() == FormItem.GroupPosition.BOTTOM || item.getGroupPosition() == FormItem.GroupPosition.SINGLE) ? dpToPx(itemView.getContext(), 12) : 0;
+        int bottom = (item.getGroupPosition() == FormItem.GroupPosition.BOTTOM || item.getGroupPosition() == FormItem.GroupPosition.SINGLE) ? dpToPx(itemView.getContext(), 24) : 0;
         marginLayoutParams.setMargins(side, top, side, bottom);
         itemView.setLayoutParams(marginLayoutParams);
     }

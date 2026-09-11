@@ -11,7 +11,7 @@
         android:layout_gravity="center"
         android:padding="20dp"
         android:text="Doctors"
-        android:textColor="@color/olive"
+        android:textColor="@color/c_red"
         android:textSize="22sp" />
 
     <ListView

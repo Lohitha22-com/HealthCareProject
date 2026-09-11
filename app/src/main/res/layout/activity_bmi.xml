@@ -9,7 +9,7 @@
         android:id="@+id/bmiToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/olive"
+        android:background="@color/c_red"
         android:gravity="center"
         app:titleTextColor="@color/white"
         app:title="BMI Calculator"/>
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="Height (cm)"
             android:textSize="14sp"
-            android:textColor="@color/black" />
+            android:textColor="@color/grey" />
 
         <EditText
             android:id="@+id/heightBMI"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="Weight (kg)"
             android:textSize="14sp"
-            android:textColor="@color/black" />
+            android:textColor="@color/grey" />
 
         <EditText
             android:id="@+id/weightBMI"
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/olive"
+            android:backgroundTint="@color/c_red"
             android:textColor="@color/white"
             android:text="Calculate" />
 
@@ -65,7 +65,7 @@
             android:layout_marginTop="24dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textColor="@color/grey" />
 
         <TextView
             android:id="@+id/bmiCategory"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="14sp"
-            android:textColor="@color/black" />
+            android:textColor="@color/grey" />
 
     </LinearLayout>
 

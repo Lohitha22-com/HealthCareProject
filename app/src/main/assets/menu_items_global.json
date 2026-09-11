@@ -1,0 +1,17 @@
+{
+  "menu_items": [
+    { "menu_id": 101, "id": "incomplete_visits", "title": "Incomplete Visits", "type": "item", "url": "GetGlobalSMIncompleteVisits", "parent_id": null, "sort_order": 1 },
+    { "menu_id": 102, "id": "incomplete_forms", "title": "Incomplete Forms", "type": "item", "url": "GetGlobalSMIncompleteStateForms", "parent_id": null, "sort_order": 2 },
+    { "menu_id": 103, "id": "completed_visits", "title": "Completed Visits", "type": "item", "url": "GetGlobalSMCompletedVisitsPatients", "parent_id": null, "sort_order": 3 },
+    { "menu_id": 104, "id": "add_documents", "title": "Add Documents", "type": "item", "url": null, "parent_id": null, "sort_order": 4 },
+    { "menu_id": 105, "id": "admin_discharge", "title": "Admin Discharge", "type": "item", "url": null, "parent_id": null, "sort_order": 5 },
+    { "menu_id": 106, "id": "future_visits", "title": "Future Visits", "type": "item", "url": null, "parent_id": null, "sort_order": 6 },
+    { "menu_id": 107, "id": "company_protocol", "title": "Company Protocol", "type": "item", "url": null, "parent_id": null, "sort_order": 7 },
+    { "menu_id": 108, "id": "update_visit_type", "title": "Update Visit Type", "type": "item", "url": null, "parent_id": null, "sort_order": 8 },
+    { "menu_id": 109, "id": "update_state", "title": "Update State", "type": "item", "url": "updatedGSMStateVisitDetails", "parent_id": null, "sort_order": 9 },
+    { "menu_id": 110, "id": "add_new_providers", "title": "Add New Providers", "type": "item", "url": "insertOrUpdateAddNewProvider", "parent_id": null, "sort_order": 10 },
+    { "menu_id": 111, "id": "move_to_incomplete", "title": "Move to Incomplete Visits", "type": "item", "url": "insertOrUpdateCompletedVisitToIncomplete", "parent_id": null, "sort_order": 11 },
+    { "menu_id": 112, "id": "reschedule_pt", "title": "Reschedule PT Visits", "type": "item", "url": null, "parent_id": null, "sort_order": 12 },
+    { "menu_id": 113, "id": "sign_out", "title": "Sign Out", "type": "item", "url": "signout", "parent_id": null, "sort_order": 13 }
+  ]
+}

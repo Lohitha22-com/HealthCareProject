@@ -1,16 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.HealthCareProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/olive</item>
-        <item name="colorPrimaryVariant">@color/olive</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/deepSkyBlue</item>
-        <item name="colorSecondaryVariant">@color/orange</item>
-        <item name="colorOnSecondary">@color/yellow</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-    </style>
+<!--    <style name="Theme.HealthCareProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/c_red</item>-->
+<!--        <item name="colorPrimaryVariant">@color/c_red</item>-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--        <item name="colorSecondary">@color/c_red</item>-->
+<!--        <item name="colorSecondaryVariant">@color/c_red</item>-->
+<!--        <item name="colorOnSecondary">@color/white</item>-->
+<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--    </style>-->
+
+    <color name="textColor">@color/white</color>
+    <color name="backgroundColor">@color/dark</color>
 </resources>

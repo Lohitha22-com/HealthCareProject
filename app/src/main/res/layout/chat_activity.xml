@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Type a message"
-            android:backgroundTint="@color/olive"/>
+            android:backgroundTint="@color/c_red"/>
 
         <ImageButton
             android:id="@+id/sendBtn"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_menu_send"
             android:backgroundTint="@android:color/transparent"
-            card_view:tint="@color/olive"
+            card_view:tint="@color/c_red"
             android:scaleType="fitCenter"
             android:contentDescription="send"/>
 

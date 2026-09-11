@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/olive">
+    android:background="@color/c_red">
 
     <TextView
         android:id="@+id/text_view"
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_margin="5dp"
-        android:background="@color/lightGreen"
+        android:background="@color/c_red"
         android:gravity="center"
         android:textColor="@color/white"
         android:padding="20dp"

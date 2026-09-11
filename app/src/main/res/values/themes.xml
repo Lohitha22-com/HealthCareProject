@@ -2,17 +2,43 @@
     <!-- Base application theme. -->
     <style name="Theme.HealthCareProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/olive</item>
-        <item name="colorPrimaryVariant">@color/olive</item>
+        <item name="colorPrimary">@color/c_red</item>
+        <item name="colorPrimaryVariant">@color/c_red</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/deepSkyBlue</item>
-        <item name="colorSecondaryVariant">@color/orange</item>
-        <item name="colorOnSecondary">@color/yellow</item>
-        <item name="colorControlActivated">@color/deepSkyBlue</item>
+        <item name="colorSecondary">@color/c_red</item>
+        <item name="colorSecondaryVariant">@color/c_red</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorControlActivated">@color/c_red</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/c_red</item>
         <!-- Customize your theme here. -->
 
+        <item name="android:actionOverflowButtonStyle">@style/ThreedotColor</item>
+    </style>
+    <style name="MyActionButtonOverflow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="tint">@color/white</item>
+    </style>
+    <style name="TransparentDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="CaduceusOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeColor">#808080</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+    </style>
+    <style name="MyToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+    <style name="ThreedotColor" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="tint">@color/white</item>
     </style>
 </resources>
