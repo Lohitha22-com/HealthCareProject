@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -14,6 +15,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,6 +27,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -117,6 +121,12 @@ public class BuildFormItems {
             }
         }
 
+        if(inputLayout != null && editText != null){
+            inputLayout.setEnabled(item.isEnabled());
+            editText.setEnabled(item.isEnabled());
+            inputLayout.setAlpha(item.isEnabled() ? 1.0f : 0.5f);
+        }
+
         if(editText != null){
             TextWatcher textWatcher = (TextWatcher) editText.getTag();
             if (textWatcher != null) editText.removeTextChangedListener(textWatcher);
@@ -148,9 +158,17 @@ public class BuildFormItems {
     private static final FieldBinder DROP_DOWN_BINDER = (itemView, item) -> {
         TextInputLayout inputLayout = itemView.findViewById(R.id.dropdownInputLayout);
         Spinner spinner = itemView.findViewById(R.id.dropdown);
+        TextView labelTextView = itemView.findViewById(R.id.headerText);
+
+        String labelText = item.isRequired() ? item.getLabel() + " *" : item.getLabel();
+
+        if(labelText != null){
+            labelTextView.setText((CharSequence) labelText);
+            labelTextView.setVisibility(View.VISIBLE);
+        }
 
         if(inputLayout != null){
-            inputLayout.setHint(item.isRequired() ? item.getLabel() + " *" : item.getLabel());
+            inputLayout.setHint(labelText);
             inputLayout.setBackgroundResource(R.drawable.text_border_color);
 
             if(item.isRequired()){
@@ -177,8 +195,31 @@ public class BuildFormItems {
             inputLayout.setBoxBackgroundColor(Color.TRANSPARENT);
         }
 
+        if(inputLayout != null && spinner != null){
+            inputLayout.setEnabled(item.isEnabled());
+            spinner.setEnabled(item.isEnabled());
+            inputLayout.setAlpha(item.isEnabled() ? 1.0f : 0.5f);
+        }
+
         if(spinner != null && item.getOptions() != null){
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(itemView.getContext(), android.R.layout.simple_spinner_dropdown_item, item.getOptions());
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(itemView.getContext(), android.R.layout.simple_spinner_item, item.getOptions()){
+                @NonNull
+                @Override
+                public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+                    ((TextView) view).setTextColor(Color.BLACK);
+                    return view;
+                }
+
+                @Override
+                public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                    View view = super.getDropDownView(position, convertView, parent);
+                    ((TextView) view).setTextColor(Color.BLACK);
+                    return view;
+                }
+            };
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(adapter);
             spinner.setOnItemSelectedListener(null);
             spinner.setSelection(0, true);
@@ -200,11 +241,19 @@ public class BuildFormItems {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     if(!isItemSelected[0]) return;
-                    item.setValue(item.getOptions().get(i));
 
                     String selectedValue = adapterView.getItemAtPosition(i).toString();
+                    item.setValue(selectedValue);
+
                     Log.e(item.getLabel().toString(),"LABEL 12345");
 
+                    if(item.getLabel().equals("Country")){
+                        boolean isUS = selectedValue.equals("United States");
+                        Context context = itemView.getContext();
+                        if(context instanceof patients){
+                            ((patients) context).selectedCountry(isUS);
+                        }
+                    }
 
                     if(item.getLabel().toString().equals("Visit Type")&&i>0){
                         ArrayList<Integer> integerList = (ArrayList<Integer>) item.getOptions2();
@@ -215,15 +264,6 @@ public class BuildFormItems {
                             }
                         }
                     }
-
-                    if(item.getLabel().toString().equals("Country") && i > 0){
-                        Context context = itemView.getContext();
-                        if(context instanceof patients){
-                            boolean isUS = item.getLabel().equals("United States");
-                            ((patients) context).handleCountrySelection(isUS);
-                        }
-                    }
-
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {}
@@ -426,7 +466,19 @@ public class BuildFormItems {
             }
         }
 
-        if(imageView != null) {
+        if(item.getValue() != null){
+            imageView.setImageURI(Uri.parse(item.getValue()));
+
+            imageView.setOnClickListener(v -> {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("*/*");
+                Intent chooser = Intent.createChooser(intent, "Select Image");
+                Activity activity = (Activity) itemView.getContext();
+                int requestCode = 1000 + item.getListIndex();
+                activity.startActivityForResult(chooser, requestCode);
+            });
+        }
+        else if (imageView != null) {
             imageView.setBackgroundResource(item.isRequired() ? R.drawable.inputborder : R.drawable.normalinputborder);
             imageView.setImageResource(android.R.drawable.ic_menu_upload);
 
@@ -530,14 +582,14 @@ public class BuildFormItems {
         config.add(new FieldConfig("SEARCH_BOX","Search Visit History","Search by Patient name", null, null, false, null));
 
         //Category
-        config.add(new FieldConfig("SECTION_HEADER","Category", null, null, null, false, null));
-        config.add(new FieldConfig("DROP_DOWN","Visit Type", "Visit Type", null, null, null, "Please select the Visit type",null, true,false, null));
-        config.add(new FieldConfig("DROP_DOWN", "Purpose of Visit", "Select", null, "Please select the purpose of visit", true, null));
+        config.add(new FieldConfig("SECTION_HEADER","Category", null, null, null, true, null));
+        config.add(new FieldConfig("DROP_DOWN","Visit Type", null, null, "Please select the Visit type", true, null));
+        config.add(new FieldConfig("DROP_DOWN", "Purpose of Visit", null, null, "Please select the purpose of visit", true, null));
 
         //Country/branch
         config.add(new FieldConfig("SECTION_HEADER","Country/Branch", null, null, null, false, null));
-        config.add(new FieldConfig("DROP_DOWN", "Country","United States", null, null, false, null));
-        config.add(new FieldConfig("DROP_DOWN", "Branch", "Select Branch", null, null,true, null));
+        config.add(new FieldConfig("DROP_DOWN", "Country",null, null, null, true, null));
+        config.add(new FieldConfig("DROP_DOWN", "Branch", null, null, null,true, Arrays.asList("Select", "TEST TEST")));
 
         //Demographic
         config.add(new FieldConfig("SECTION_HEADER", "Demographic",null, null, null, false, null));
@@ -545,7 +597,7 @@ public class BuildFormItems {
         config.add(new FieldConfig("TEXT_INPUT","Last Name","Last Name", null, "Please enter your last name", true, null));
         config.add(new FieldConfig("ATTACHMENT", "Take a picture of Patient's ID ", null, null, "Please take or attach a picture of Patient's ID", true, null));
         config.add(new FieldConfig("TEXT_INPUT", "Social Security Number", "XXXXXXXXX", null, "Social security number is required", true, null ));
-        config.add(new FieldConfig("TEXT_INPUT", "Phone Number", "Phone Number", null, "Phone number is required", true,null));
+        config.add(new FieldConfig("PHONE_INPUT", "Phone Number", "Phone Number", null, "Phone number is required", true,null));
 
         //Date Input
         config.add(new FieldConfig("DOUBLE_DATE_INPUT", "Date of Birth","Date of Injury", "Date of Birth", "Date of Injury", null, "Date of Birth is required", "Date of Injurty required", true, true, null));

@@ -28,7 +28,7 @@ public class FormItem {
     private int listIndex;
     private List<Integer> options2 = new ArrayList<>();
     private List<String> options = new ArrayList<>();
-    private boolean isEnabled;
+    private boolean isEnabled = true;
 
     public FormItem() {
     }

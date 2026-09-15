@@ -7,9 +7,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,16 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -63,6 +57,7 @@ public class patients extends BaseActivity1 {
     RequestQueue requestQueue;
 
     public static final String TAG = "CancelTAG";
+    private String selectedValue;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,7 +80,9 @@ public class patients extends BaseActivity1 {
         }
 
         loadVisitTypeData(); //A visit type drop down method
-        loadCountriesData();
+        loadCountriesData(selectedValue);
+        loadLanguagesData(null);
+        loadStatesInACountry(null);
 
         Button visitButton = findViewById(R.id.visitButton); //A visit button
         visitButton.setOnClickListener(v -> { //By clicking on to the visit button it is open the details
@@ -131,33 +128,33 @@ public class patients extends BaseActivity1 {
         }
     }
 
-    //    private boolean hasAnyValue(List<FormItem> items){ //
-//        for(FormItem item : items){
-//            if(item.getValue() != null && !item.getValue().isEmpty()){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        Log.d("AttachDebug", "requestCode=" + requestCode + " resultCode=" + resultCode + " data=" + data);
-//
-//        if(requestCode >= 1000 && resultCode == RESULT_OK && data != null){
-//            int listIndex = requestCode - 1000;
-//            if(listIndex >= 0 && listIndex < items.size()){
-//                FormItem item = items.get(listIndex);
-//                Uri fileUri = data.getData();
-//                Log.d("AttachDebug", "fileUri=" + fileUri);
-//                if(fileUri != null){
-//                    item.setValue(fileUri.toString());
-//                }
-//            }
-//            formAdapter.notifyDataSetChanged();
-//        }
-//    }
+        private boolean hasAnyValue(List<FormItem> items){ //
+        for(FormItem item : items){
+            if(item.getValue() != null && !item.getValue().isEmpty()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("AttachDebug", "requestCode=" + requestCode + " resultCode=" + resultCode + " data=" + data);
+
+        if(requestCode >= 1000 && resultCode == RESULT_OK && data != null){
+            int listIndex = requestCode - 1000;
+            if(listIndex >= 0 && listIndex < items.size()){
+                FormItem item = items.get(listIndex);
+                Uri fileUri = data.getData();
+                Log.d("AttachDebug", "fileUri=" + fileUri);
+                if(fileUri != null){
+                    item.setValue(fileUri.toString());
+                }
+            }
+            formAdapter.notifyDataSetChanged();
+        }
+    }
 
     public void loadVisitTypeData(){ //Visit type method for calling the web method.
         if(key == null){ //Checking the key is null or empty or not.
@@ -306,7 +303,7 @@ public class patients extends BaseActivity1 {
         requestQueue.add(request);
     }
 
-    public void loadCountriesData(){
+    public void loadCountriesData(String selectedValue){
         if(key == null){
             Log.e("Countries", "Cannot load the data key is missing");
             return;
@@ -440,12 +437,12 @@ public class patients extends BaseActivity1 {
             Log.e("Language", "Failed to fetch the key value.");
             return;
         }
-        String url = "http://161.129.91.101:90/Telemed/ws_webrts/Util.asmx/populateDDL";
+        String url = "http://161.129.91.101:90/Telemed/ws_webrtc/Util.asmx/populateDDL";
 
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("sKey", key);
-            jsonObject.put("sTableName", "itable");
+            jsonObject.put("sTableName", "tbl");
         }catch (JSONException e){
             Log.e("Language", "Failed to load the data", e);
             return;
@@ -502,12 +499,12 @@ public class patients extends BaseActivity1 {
             Log.e("States", "Failed to fetch the key value.");
             return;
         }
-        String url = "http://161.129.91.101:90/Telemed/ws_webrts/Util.asmx/populateDDL";
+        String url = "http://161.129.91.101:90/Telemed/ws_webrtc/Util.asmx/populateDDL";
 
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("sKey", key);
-            jsonObject.put("sTableName", "itable");
+            jsonObject.put("sTableName", "tbl");
         }catch (JSONException e){
             Log.e("States", "Failed to load the data", e);
             return;
@@ -559,18 +556,14 @@ public class patients extends BaseActivity1 {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void handleCountrySelection(boolean isUnitedStates){
-        for(FormItem item : items) {
-            String label = item.getLabel();
-
-            if ("State".equals(label) || "Zip".equals(label) || "City".equals(label)) {
-                item.setEnabled(isUnitedStates);
-                if(!isUnitedStates) {
-                    item.setValue("");
-                    item.setEnabled(false);
-                }
+    public void selectedCountry(boolean isUS){
+        for(int i = 0; i < items.size(); i++){
+            FormItem item = items.get(i);
+            if("State".equals(item.getLabel()) || "Zip".equals(item.getLabel()) || "City".equals(item.getLabel()) || "Address".equals(item.getLabel()) || "Address 2".equals(item.getLabel())){
+                item.setEnabled(isUS);
+                formAdapter.notifyDataSetChanged();
             }
         }
-        formAdapter.notifyDataSetChanged();
     }
+
 }
