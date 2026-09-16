@@ -19,13 +19,19 @@ android {
     }
 
     buildTypes {
+        debug{
+            buildConfigField "String", "API_BASE_URL", '"http://161.129.91.101:90/Telemed/"'
+        }
         release {
             minifyEnabled false
+            buildConfigField "String", "API_BASE_URL", '"http://production.com"'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
 
     compileOptions {
@@ -58,10 +64,6 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:34.18.0')
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-firestore:26.6.0'
-
-    implementation 'com.squareup.retrofit2:retrofit:3.0.0'
-    implementation 'com.squareup.retrofit2:converter-gson:3.0.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:3.0.0'
 
     implementation 'com.google.android.gms:play-services-maps:19.0.0'
     implementation 'com.google.android.gms:play-services-location:21.3.0'
