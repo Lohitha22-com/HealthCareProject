@@ -15,6 +15,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
@@ -32,6 +34,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -77,7 +80,7 @@ public class ListViewsActivity extends BaseActivity1 {
     Boolean followUp;
     ImageView map;
     public String token;
-
+    SwipeRefreshLayout swipeRefreshLayout;
     CustomRecyclerViewAdapter recyclerViewAdapter;
     private static final int NOTIFICATION_PERMISSION_CODE = 101;
 
@@ -92,6 +95,7 @@ public class ListViewsActivity extends BaseActivity1 {
 
         toolbar = findViewById(R.id.toolBar); //ToolBar for the header
         toolbarTile = findViewById(R.id.toolBarTitle);
+        swipeRefreshLayout = findViewById(R.id.pullToRefresh);
 
         setSupportActionBar(toolbar); //Making the toolbar for supporting the Action Bar
         if (getSupportActionBar() != null) {
@@ -119,6 +123,27 @@ public class ListViewsActivity extends BaseActivity1 {
             recyclerViewAdapter = new CustomRecyclerViewAdapter(this, listViewDashboardList);
             recyclerView.setAdapter(recyclerViewAdapter);
         }
+
+        swipeRefreshLayout.setColorSchemeColors(
+                Color.parseColor("#4285F4"),
+                Color.parseColor("#EA4335"),
+                Color.parseColor("#FBBC05"),
+                Color.parseColor("#34A853")
+        );
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(swipeRefreshLayout.isRefreshing()){
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    }
+                }, 5000);
+            }
+        });
 
         ExpandableListView expandableListView = findViewById(R.id.menuExpand); //An expandable list
         ActionBarDrawerToggle toggle1 = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -458,7 +483,7 @@ public class ListViewsActivity extends BaseActivity1 {
         }
     }
 
-    public void patientsButton(){
+    public void patientsButton() {
         if (patientButton != null) {
             patientButton.setOnClickListener(v -> {
                 Intent intent = new Intent(ListViewsActivity.this, PatientsActivity.class);

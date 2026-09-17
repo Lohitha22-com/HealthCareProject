@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.healthcareproject.R;
 
@@ -27,6 +28,7 @@ import java.util.Map;
 
 public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecyclerViewAdapter.ViewHolder> {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     private final Context context;
     private final List<ListViewDashboard> items;
 
@@ -52,6 +54,7 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemslistdashboard, parent, false);
         return new ViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {

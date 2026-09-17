@@ -26,7 +26,7 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.FormViewHolder
     }
 
     public void setItems(List<FormItem> items){
-        this.formItemsList = (formItemsList != null) ? formItemsList : new ArrayList<>();
+        this.formItemsList = (items != null) ? items : new ArrayList<>();
         notifyDataSetChanged();
     }
 

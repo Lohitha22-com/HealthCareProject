@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.healthcareproject.BuildConfig;
 import com.example.healthcareproject.form.BuildFormItems;
 import com.example.healthcareproject.form.FormAdapter;
+import com.example.healthcareproject.form.FieldBinder;
 import com.example.healthcareproject.form.FormItem;
 import com.example.healthcareproject.ui.backbutton.BaseActivity1;
 import com.example.healthcareproject.R;
@@ -448,7 +449,7 @@ public class PatientsActivity extends BaseActivity1 {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("sKey", key);
-            jsonObject.put("sTableName", "tbl");
+            jsonObject.put("sTableName", "tblTable");
         }catch (JSONException e){
             Log.e("Language", "Failed to load the data", e);
             return;
@@ -510,7 +511,7 @@ public class PatientsActivity extends BaseActivity1 {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("sKey", key);
-            jsonObject.put("sTableName", "tbl");
+            jsonObject.put("sTableName", "tblTable");
         }catch (JSONException e){
             Log.e("States", "Failed to load the data", e);
             return;
