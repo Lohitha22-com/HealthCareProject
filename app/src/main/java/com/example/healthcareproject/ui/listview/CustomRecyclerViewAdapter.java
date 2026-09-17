@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.healthcareproject.R;
+import com.example.healthcareproject.form.FormItem;
 
 import java.util.List;
 import java.util.Map;
@@ -217,5 +218,14 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
 
             timerButton = itemView.findViewById(R.id.timerButton);
         }
+    }
+
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+    public void addAll(List<FormItem> items){
+        items.addAll(items);
+        notifyDataSetChanged();
     }
 }

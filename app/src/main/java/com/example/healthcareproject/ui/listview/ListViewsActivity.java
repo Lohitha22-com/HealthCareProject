@@ -141,7 +141,7 @@ public class ListViewsActivity extends BaseActivity1 {
                             swipeRefreshLayout.setRefreshing(false);
                         }
                     }
-                }, 5000);
+                }, 4500);
             }
         });
 
@@ -172,7 +172,7 @@ public class ListViewsActivity extends BaseActivity1 {
         }
 
         if (key != null && !key.isEmpty() && companyId != null && !companyId.isEmpty()) {
-            Log.d("Dashboard", " Key: " + key + " | Company: " + companyId);
+//            Log.d("Dashboard", " Key: " + key + " | Company: " + companyId);
             fetchPatientVisitsFromWebService(initialSearchName);
         } else {
             Log.e("Dashboard", "Critical Error: Key or CompanyId missing!");

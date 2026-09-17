@@ -168,7 +168,7 @@ public class PatientsActivity extends BaseActivity1 {
             Log.e("Patients Page", "Cannot trigger web method: Missing Authentication Credential.");
             return;
         }
-        Log.d("VisitType", "Key is working: " +key); //If the key is not null then in the logcat we will check the value.
+//        Log.d("VisitType", "Key is working: " +key); //If the key is not null then in the logcat we will check the value.
 
         String url = BASE_URL + "ws_webrtc/Telemed.asmx/GetVisitTypes"; //A webmethod url
 

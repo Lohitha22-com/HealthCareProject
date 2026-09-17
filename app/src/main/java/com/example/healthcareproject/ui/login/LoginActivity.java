@@ -109,8 +109,8 @@ public class LoginActivity extends BaseActivity1 {
                                 if (companyId.isEmpty()) companyId = data.optString("iCompanyId", "");
 
 
-                                Log.d("Login", "Generated Key: " + key);
-                                Log.d("Login", "Company Id: " + companyId);
+//                                Log.d("Login", "Generated Key: " + key);
+//                                Log.d("Login", "Company Id: " + companyId);
 
                                 if(!key.isEmpty()) {
                                     SharedPreferences sharedPreferences = getSharedPreferences("SessionPrefs", MODE_PRIVATE);
