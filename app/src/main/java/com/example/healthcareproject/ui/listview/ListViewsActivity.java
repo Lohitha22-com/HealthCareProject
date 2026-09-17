@@ -278,7 +278,7 @@ public class ListViewsActivity extends BaseActivity1 {
                 url,
                 jsonObject,
                 response -> {
-                    Log.d("Dashboard", "Visits API Array Response: " + response.toString());
+//                    Log.d("Dashboard", "Visits API Array Response: " + response.toString());
                     try {
                         listViewDashboardList.clear();
 

@@ -93,11 +93,11 @@ public class LoginActivity extends BaseActivity1 {
                         url,
                         requestBody,
                         response -> {
-                            Log.d("Login", "Response: " + response.toString());
+//                            Log.d("Login", "Response: " + response.toString());
                             progressDialog.dismiss();
 
                             JSONObject data = response.optJSONObject("d");
-                            Log.d("Login","Full data object: " + (data != null ? data.toString() : "null"));
+//                            Log.d("Login","Full data object: " + (data != null ? data.toString() : "null"));
 
                             boolean success = data != null && (data.optBoolean("status", false) || data.has("key") || data.has("sKey") || data.has("Key"));
                             String message = data != null ? data.optString("message", "Login failed"): "Login failed";

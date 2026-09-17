@@ -185,7 +185,7 @@ public class PatientsActivity extends BaseActivity1 {
                 url,
                 object,
                 response -> {
-                    Log.d("VisitType", "Visit Array: " + response.toString()); //If the web method has any data we can see that in logcat as a visit array
+//                    Log.d("VisitType", "Visit Array: " + response.toString()); //If the web method has any data we can see that in logcat as a visit array
 
                     try {
                         JSONArray array = response.getJSONArray("d"); //A JSONArray with the JSONObject "d".
@@ -267,7 +267,7 @@ public class PatientsActivity extends BaseActivity1 {
                 url,
                 jsonObject,
                 response -> {
-                    Log.d("PurposeOfVisit", "Purpose of Visit Array: " + response.toString());
+//                    Log.d("PurposeOfVisit", "Purpose of Visit Array: " + response.toString());
                     try {
                         JSONArray array = response.getJSONArray("d");
                         ArrayList<String> purposeArray = new ArrayList<>();
@@ -330,7 +330,7 @@ public class PatientsActivity extends BaseActivity1 {
                 url,
                 jsonObject,
                 response -> {
-                    Log.d("Countries", "Country Array : " + response.toString());
+//                    Log.d("Countries", "Country Array : " + response.toString());
                     try{
                         JSONArray array = response.getJSONArray("d");
                         ArrayList<String> countriesArray = new ArrayList<>();
@@ -460,7 +460,7 @@ public class PatientsActivity extends BaseActivity1 {
                 url,
                 jsonObject,
                 response -> {
-                    Log.d("Language", "Language Array is: " + response.toString());
+//                    Log.d("Language", "Language Array is: " + response.toString());
 
                     try{
                         JSONArray jsonArray = response.getJSONArray("d");
@@ -522,7 +522,7 @@ public class PatientsActivity extends BaseActivity1 {
                 url,
                 jsonObject,
                 response -> {
-                    Log.d("States", "State Array is: " + response.toString());
+//                    Log.d("States", "State Array is: " + response.toString());
 
                     try{
                         JSONArray jsonArray = response.getJSONArray("d");
