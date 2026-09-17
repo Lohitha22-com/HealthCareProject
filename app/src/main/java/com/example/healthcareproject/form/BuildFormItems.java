@@ -1,4 +1,4 @@
-package com.example.healthcareproject.ui.patients;
+package com.example.healthcareproject.form;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -32,6 +32,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 
 import com.example.healthcareproject.R;
+import com.example.healthcareproject.ui.patients.PatientsActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 

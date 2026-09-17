@@ -1,4 +1,4 @@
-package com.example.healthcareproject.ui.patients;
+package com.example.healthcareproject.form;
 
 import android.view.View;
 

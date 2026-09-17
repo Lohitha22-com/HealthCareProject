@@ -1,4 +1,4 @@
-package com.example.healthcareproject.ui.listview;
+package com.example.healthcareproject.data.model;
 
 import java.util.ArrayList;
 import java.util.List;

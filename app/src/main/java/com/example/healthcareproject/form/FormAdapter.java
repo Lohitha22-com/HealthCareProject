@@ -1,4 +1,4 @@
-package com.example.healthcareproject.ui.patients;
+package com.example.healthcareproject.form;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -26,7 +26,7 @@ public class FormAdapter extends RecyclerView.Adapter<FormAdapter.FormViewHolder
     }
 
     public void setItems(List<FormItem> items){
-        this.formItemsList = items;
+        this.formItemsList = (formItemsList != null) ? formItemsList : new ArrayList<>();
         notifyDataSetChanged();
     }
 

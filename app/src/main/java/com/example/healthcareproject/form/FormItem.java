@@ -1,4 +1,4 @@
-package com.example.healthcareproject.ui.patients;
+package com.example.healthcareproject.form;
 
 import java.util.ArrayList;
 import java.util.List;

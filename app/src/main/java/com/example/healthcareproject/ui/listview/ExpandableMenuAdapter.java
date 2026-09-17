@@ -7,6 +7,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.example.healthcareproject.R;
+import com.example.healthcareproject.data.model.MenuModelClass;
 
 import java.util.ArrayList;
 import java.util.List;
