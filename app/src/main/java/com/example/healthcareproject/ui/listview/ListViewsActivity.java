@@ -198,7 +198,7 @@ public class ListViewsActivity extends BaseActivity1 {
                 return;
             }
             token = task.getResult();
-            Log.d(TAG, "Current FCM token B: " + task.getResult());
+//            Log.d(TAG, "Current FCM token B: " + task.getResult());
         });
 
         firebaseNotification = findViewById(R.id.firebaseNotificationButton);
