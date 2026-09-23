@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Firebase & Secret Service Account Keys
+*firebase-adminsdk*.json
+google-services.json
+
