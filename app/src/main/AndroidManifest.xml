@@ -41,12 +41,12 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".ui.patients.PatientsActivity" />
-        <activity android:name=".ui.dashboard.DashboardActivity" />
-        <activity android:name=".ui.login.SelfPayActivity" />
-        <activity android:name=".ui.listview.ContentActivity" />
-        <activity android:name=".ui.listview.ListViewsActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.patients.PatientsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.dashboard.DashboardActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.login.SelfPayActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.listview.ContentActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.listview.ListViewsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.login.LoginActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.login.SplashActivity"
             android:exported="true">

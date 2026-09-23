@@ -449,7 +449,7 @@ public class PatientsActivity extends BaseActivity1 {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("sKey", key);
-            jsonObject.put("sTableName", "tblTable");
+            jsonObject.put("sTableName", "tbltelemed_languages");
         }catch (JSONException e){
             Log.e("Language", "Failed to load the data", e);
             return;

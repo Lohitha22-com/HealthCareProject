@@ -96,7 +96,7 @@ public class ListViewsActivity extends BaseActivity1 {
 
         setSupportActionBar(toolbar); //Making the toolbar for supporting the Action Bar
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);//Making the toolbar title enabled as false.
         }
         Objects.requireNonNull(getSupportActionBar()).setTitle("Menu Items");
 
@@ -381,56 +381,56 @@ public class ListViewsActivity extends BaseActivity1 {
         }
     }
 
-    public String loadMenuFromAsset(){
+    public String loadMenuFromAsset(){ //
         String json = null;
         try{
-            InputStream is = getAssets().open("menu_items.json");
-            int size = is.available();
-            byte[] bytes = new byte[size];
-            is.read(bytes);
-            is.close();
-            json = new String(bytes, StandardCharsets.UTF_8);
+            InputStream is = getAssets().open("menu_items.json"); //Opening the json file from the asset folder.
+            int size = is.available(); //Intialising the size of the file.
+            byte[] bytes = new byte[size]; //Creating a byte array.
+            is.read(bytes); //Reading the bits from the file.
+            is.close(); //then weddig is completed.
+            json = new String(bytes, StandardCharsets.UTF_8); //Converting the btypes int the string.
 
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace();  //Pringting the execution.
         }
-        return json;
+        return json; //returning the string, json file.
     }
 
-    public void buildMenuItem() {
-        for(MenuModelClass item: flatMenuList){
-            if(item.getParent_id() == null) {
-                topLevelItems.add(item);
+    public void buildMenuItem() { //Building the menu items.
+        for(MenuModelClass item: flatMenuList){ //Looping through the flat menu list.
+            if(item.getParent_id() == null) { //Checking if the parent_id is empty or not.
+                topLevelItems.add(item); //Adding the items into the top level items.
             }
             else {
-                MenuModelClass parent = findMenuById(item.parent_id);
-                if(parent != null){
-                    parent.getChildren().add(item);
+                MenuModelClass parent = findMenuById(item.parent_id); //Finding the parent by its id.
+                if(parent != null){ //If the parent is empty or not.
+                    parent.getChildren().add(item); //addig the items as children to the parent.
                 }
             }
         }
     }
 
-    public MenuModelClass findMenuById(int menuId) {
-        for(MenuModelClass item : flatMenuList){
-            if(item.getMenu_id() == menuId){
-                return item;
+    public MenuModelClass findMenuById(int menuId) { //Find the menu by its id.
+        for(MenuModelClass item : flatMenuList){ //Looping through flat menu list.
+            if(item.getMenu_id() == menuId){ //Checking if the item memu is equal to the menu id.
+                return item; //returing the items.
             }
         }
         return null;
     }
 
     public void sortMenuItems() {
-        topLevelItems.sort((o1, o2) -> Integer.compare(o1.getSort_order(), o2.getSort_order()));
+        topLevelItems.sort((o1, o2) -> Integer.compare(o1.getSort_order(), o2.getSort_order())); //Sorting the items based on the sort order key.
         for(MenuModelClass parent : topLevelItems){
             parent.getChildren().sort((o1, o2) -> Integer.compare(o1.getSort_order(), o2.getSort_order()));
         }
     }
 
     private void askNotificationPermission() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            if(ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.POST_NOTIFICATIONS}, NOTIFICATION_PERMISSION_CODE);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){ //Checking the version of the android is greater than 13 or not.
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) { //Checking the permission is granted or not.
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.POST_NOTIFICATIONS}, NOTIFICATION_PERMISSION_CODE); //Asking the user to grant the permissions.
             }
         }
     }
@@ -438,31 +438,31 @@ public class ListViewsActivity extends BaseActivity1 {
     private void sendFCMNotification(String title, String body){
         String CHANNEL_ID = "telemed_health_alerts";
         String CHANNEL_NAME = "Telemed Health Alerts";
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
-            channel.setDescription("Critical Alerts");
-            if(manager != null){
-                manager.createNotificationChannel(channel);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE); //Notification manager is controller of the notification it is used to tell the notification or to show the notification.
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){ //Checking the Android SDK version is greater than Android 13 or not.
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH); //Creating the notification channel with the high importance.
+            channel.setDescription("Critical Alerts");//setting the description of the notification channel.
+            if(manager != null){ //checking the notification manager is empty or not.
+                manager.createNotificationChannel(channel); //Creating the notification channel with the notification manager.
             }
         }
 
-        Intent intent = new Intent(this, PatientsActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        Intent intent = new Intent(this, PatientsActivity.class); //Intent to navigate notification into the patients activity.java
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);//adding the flag to the intent, to the how to open the activity.
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE); //Pending is always does a task later. where intent is used to tell which activity has to open next, that activity is called later with the help of pending intent.
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle(title)
-                .setContentText(body)
-                .setSmallIcon(R.drawable.caduceus_logo_red)
-                .setColor(Color.RED)
-                .setAutoCancel(true)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setContentIntent(pendingIntent);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID) //A notification compat builder for setting the title and image and the intent to the notification.
+                .setContentTitle(title) //setting the title
+                .setContentText(body) //setting the body of the notification
+                .setSmallIcon(R.drawable.caduceus_logo_red) //setting the icon of the image
+                .setColor(Color.RED) //setting the color to the intent.
+                .setAutoCancel(true) //setting the auto cancel to true.
+                .setPriority(NotificationCompat.PRIORITY_HIGH) //setting the priority of the notification.
+                .setContentIntent(pendingIntent); //setting the intent content.
 
-        int notificationId = (int) System.currentTimeMillis();
-        if(manager != null){
-            manager.notify(notificationId, builder.build());
+        int notificationId = (int) System.currentTimeMillis(); //creating a variable for the notification because every notification has its own id.
+        if(manager != null){ //Manger checks whether it had permission or not.
+            manager.notify(notificationId, builder.build()); //Then the manager is call the notify method to show the notification.
         }
     }
 

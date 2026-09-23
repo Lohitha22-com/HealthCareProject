@@ -223,7 +223,7 @@ public class LoginActivity extends BaseActivity1 {
                 .setInterpolator(new AccelerateInterpolator())
                 .start());
 
-        binding.cardErrorMessage.animate()
+        binding.cardErrorMessage.post(() -> binding.cardErrorMessage.animate()
                 .translationY(0f)
                 .alpha(1f)
                 .scaleX(1f)
@@ -231,7 +231,7 @@ public class LoginActivity extends BaseActivity1 {
                 .setDuration(450)
                 .setInterpolator(new AccelerateInterpolator())
                 .setStartDelay(80)
-                .start();
+                .start());
 
         binding.btnErrorOk.setOnClickListener(v -> {
             binding.imgErrorX.post(() -> binding.imgErrorX.animate()
