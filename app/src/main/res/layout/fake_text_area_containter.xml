@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/bg_section_header"
+    android:layout_marginBottom="30dp">
+
+    <TextView
+        android:id="@+id/tv_pComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Provider Comments: "
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:paddingLeft="15dp"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/etProviderComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:imeOptions="actionNext"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="@null"
+        android:focusable="true"
+        android:clickable="true"
+        android:hint="Comments"
+        android:contextClickable="true"
+        android:scrollbarSize="5dp"
+        android:scrollbars="vertical"
+        android:textSize="16sp"
+        android:textColor="@color/dark"
+        android:layout_marginTop="5dp"
+        android:maxLines="90"/>
+
+    <TextView
+        android:id="@+id/tv_addendum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Addendum: "
+        android:textColor="@color/grey"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:paddingLeft="15dp"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:id="@+id/etAddendumComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:maxLines="90"
+        android:layout_marginTop="5dp"
+        android:textStyle="normal"
+        android:textSize="16sp"
+        android:textColor="@color/dark"
+        android:contextClickable="true"
+        android:focusable="true"
+        android:hint="Comments"
+        android:scrollbarSize="5dp"
+        android:scrollbars="vertical"
+        android:clickable="true"
+        android:imeOptions="actionNext"
+        android:background="@null"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginBottom="25dp"/>
+
+</LinearLayout>

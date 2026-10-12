@@ -516,6 +516,47 @@ public class BuildFormItems {
             });
         }
     };
+
+    private static final FieldBinder PROVIDER_COMMENTS_BINDER = (itemView, item) -> {
+        TextView subHeader = itemView.findViewById(R.id.tv_provider_comment);
+        EditText editText = itemView.findViewById(R.id.etProviderComments);
+        EditText editText1 = itemView.findViewById(R.id.etAddendumComments);
+
+        if(subHeader != null) subHeader.setText(item.getLabel());
+        if(editText != null) {
+            editText.setFocusable(true);
+            editText.setFocusableInTouchMode(true);
+            editText.setClickable(true);
+            TextWatcher textWatcher = (TextWatcher) editText.getTag();
+            if (textWatcher != null) editText.removeTextChangedListener(textWatcher);
+            editText.setText(item.getValue());
+
+            String text = editText.getText().toString();
+            if (item.getValue() != null && !item.getValue().equals(text)) {
+                editText.setText(item.getValue());
+            } else if(item.getValue() == null && text != null) {
+                editText.setText(text);
+            }
+
+            TextWatcher newTextWatcher = new TextWatcher() {
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    item.setValue(editable.toString());
+                }
+
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+            };
+            editText.addTextChangedListener(newTextWatcher);
+            editText.setTag(newTextWatcher);
+        }
+    };
     private FieldBinder bindButton(List<FormItem> items, Runnable onValidated) {
         return (itemView, item) -> {
             Button button = itemView.findViewById(R.id.visitButton);
@@ -628,6 +669,10 @@ public class BuildFormItems {
         config.add(new FieldConfig("SECTION_HEADER", "Language", null, null, null, false, null));
         config.add(new FieldConfig("DROP_DOWN", "Language", "English (United States)", null, null, false, null));
 
+        //Comments
+        config.add(new FieldConfig("SECTION_HEADER", "Comments", null, null, null, false, null));
+        config.add(new FieldConfig("COMMENT_SECTION", null, "Comments", null, null, false, null));
+
         //Looping through all the field config with form item.
         List<FormItem> items = new ArrayList<>();
         for(FieldConfig config1: config){
@@ -692,6 +737,12 @@ public class BuildFormItems {
                 item.setLayoutResId(R.layout.row_search_box);
                 item.setBinder(SEARCH_BOX_BINDER);
                 break;
+            case "COMMENT_SECTION":
+                item.setLayoutResId(R.layout.row_comments);
+                item.setBinder(PROVIDER_COMMENTS_BINDER);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown field type: " + config.type);
         }
         return item;
     }

@@ -34,6 +34,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -81,6 +82,7 @@ public class ListViewsActivity extends BaseActivity1 {
     public String token;
     CustomRecyclerViewAdapter recyclerViewAdapter;
     private static final int NOTIFICATION_PERMISSION_CODE = 101;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public static final String BASE_URL = BuildConfig.API_BASE_URL;
 
@@ -121,12 +123,19 @@ public class ListViewsActivity extends BaseActivity1 {
             recyclerView.setAdapter(recyclerViewAdapter);
         }
 
-        swipeRefreshLayout.setColorSchemeColors(
-                Color.parseColor("#4285F4"),
-                Color.parseColor("#EA4335"),
-                Color.parseColor("#FBBC05"),
-                Color.parseColor("#34A853")
-        );
+        swipeRefreshLayout = findViewById(R.id.pullToRefresh);
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setColorSchemeColors(
+                    Color.parseColor("#4285F4"),
+                    Color.parseColor("#EA4335"),
+                    Color.parseColor("#FBBC05"),
+                    Color.parseColor("#34A853")
+            );
+            swipeRefreshLayout.setOnRefreshListener(() -> {
+                String queryText = etSearchPatient != null ? etSearchPatient.getText().toString().trim() : "";
+                fetchPatientVisitsFromWebService(queryText);
+            });
+        }
 
         ExpandableListView expandableListView = findViewById(R.id.menuExpand); //An expandable list
         ActionBarDrawerToggle toggle1 = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -275,6 +284,9 @@ public class ListViewsActivity extends BaseActivity1 {
                     } catch (JSONException e) {
                         Log.e("Dashboard", "Failed to parse reponse", e);
                     }
+                    if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
                 },
                 volleyError -> {
                     String error = volleyError.getMessage();
@@ -282,6 +294,9 @@ public class ListViewsActivity extends BaseActivity1 {
                         error = "Status Code: " + volleyError.networkResponse.statusCode;
                     }
                     Log.e("Dashboard", "Network error:" + error);
+                    if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
                 }
         ) {
             @Override

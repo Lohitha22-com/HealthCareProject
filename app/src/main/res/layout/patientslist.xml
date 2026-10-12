@@ -48,19 +48,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/visitButton"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal|bottom"
-            android:padding="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/btn_red_pill"
-            android:backgroundTint="@null"
-            android:text="Start New Visit"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:elevation="8dp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:isScrollContainer="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:isScrollContainer="false"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/visitButton"
+                    android:layout_width="200dp"
+                    android:layout_height="60dp"
+                    android:text="Start New Visit"
+                    android:background="@drawable/btn_red_pill"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
